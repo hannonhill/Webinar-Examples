@@ -1,0 +1,85 @@
+## GOOGLE MAPS STATIC API v2
+
+## Reference to the <system-data-structure> node
+#set ( $data = $_XPathTool.selectSingleNode($contentRoot, "/system-data-structure") )
+
+## HTML <id>
+#set ( $id = $_SerializerTool.serialize($data.getChild("id"), true) )
+
+## Block <title>
+#set ( $map_title = $_SerializerTool.serialize($data.getChild("title"), true) )
+
+## Map size (<width> and <height>) in pixels
+#set ( $width  = $_SerializerTool.serialize($data.getChild("width"), true) )
+#set ( $height = $_SerializerTool.serialize($data.getChild("height"), true) )
+
+## Map <center>, equidistant from all edges
+#set ( $center = $_SerializerTool.serialize($data.getChild("center"), true) )
+
+## Map <zoom> level to start with
+#set ( $zoom = $data.getChild("zoom").value )
+    
+## Which URL <protocol> should be used: http or https
+#set ( $protocol = $data.getChild("protocol").value )
+
+## Which image <format> should be used
+#set ( $format = $data.getChild("format").value )
+
+## Which map <type> should be used
+#set ( $type = $data.getChild("type").value )
+
+## Which <language> should be used
+#set ( $language = $data.getChild("language").value )
+
+## Reference to the <marker> nodes
+#set ( $markers = $_XPathTool.selectNodes($data, "marker[use='Yes'][address!='' or coords!='']") )
+
+## Check that the list is not empty
+#if ( $markers.size() > 0 )
+    #set ( $marks = "" )
+    #foreach ( $marker in $markers )
+        ## The <size> of the marker
+        #set ( $size = $marker.getChild("size").value )
+        
+        ## The <color> of the marker
+        #set ( $color = $marker.getChild("color").value )
+        
+        ## Marker <label> character (A-Z0-9)
+        #set ( $label = $_SerializerTool.serialize($marker.getChild("label"), true) )
+        
+        ## Reference <address> node of the marker, used first
+        #set ( $address = $marker.getChild("address") )
+        
+        ## Reference <coordinates> node of the marker, used if address is blank
+        #set ( $coords = $marker.getChild("coords") )
+        
+        ## Use <address> before <coords>
+        #if ( $address.value != "" )
+            #set ( $loc = $_SerializerTool.serialize($address, true) )
+        #else
+            #set ( $loc = $_SerializerTool.serialize($coords, true) )
+        #end
+    
+        #set ( $marks = $marks + "&amp;markers=size:${size}|color:${color}|label:${label}|${loc}" )
+    #end
+    
+    ## Build the image URL (what goes in the "src" attribute of the <img> tag)
+    #set ( $url = "${protocol}://maps.google.com/maps/api/staticmap?" )
+    #if ( $markers.size() == 0 )
+        ## If there is no center, the markers automatically determine the center
+        #if ( $center != "" )
+            #set ( $url = $url + "center=${center}" )
+            #set ( $url = $url + "&amp;" )
+        #end
+    #end
+    #set ( $url = $url + "zoom=${zoom}" )
+    #set ( $url = $url + "&amp;size=${width}x${height}" )
+    #set ( $url = $url + "&amp;format=${format}" )
+    #set ( $url = $url + "&amp;maptype=${type}" )
+    #set ( $url = $url + "&amp;language=${language}" )
+    #set ( $url = $url + "${marks}" ) ## This will be an empty string if there are no markers
+    #set ( $url = $url + "&amp;sensor=false" )
+    
+    ## Output the HTML for the image embed
+    <div id="${id}"><img src="${url}" alt="${map_title}" title="${map_title}" /></div>
+#end

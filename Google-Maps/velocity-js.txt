@@ -1,0 +1,93 @@
+## GOOGLE MAPS JAVASCRIPT API v3
+
+## Reference to the <system-data-structure> node
+#set ( $data = $_XPathTool.selectSingleNode($contentRoot, "/system-data-structure") )
+
+## HTML <id>
+#set ( $id = $_SerializerTool.serialize($data.getChild("id"), true) )
+
+## Block <title>
+#set ( $map_title = $_SerializerTool.serialize($data.getChild("title"), true) )
+
+## Map size (<width> and <height>) in pixels
+#set ( $width  = $_SerializerTool.serialize($data.getChild("width"), true) )
+#set ( $height = $_SerializerTool.serialize($data.getChild("height"), true) )
+
+## Map <center>, equidistant from all edges
+#set ( $center = $_SerializerTool.serialize($data.getChild("center"), true) )
+
+## Map <zoom> level to start with
+#set ( $zoom = $data.getChild("zoom").value )
+
+## Which map <type> should be used
+#set ( $type = $data.getChild("type").value )
+
+## Reference to the <marker> nodes
+#set ( $markers = $_XPathTool.selectNodes($data, "marker[use='Yes']") )
+
+## Check that the list of markers is not empty
+#if ( $markers.size() > 0 )
+
+    ## Output the HTML for the interactive embed
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript">
+        $(document).ready(function() { initialize(); });
+        
+        function initialize() {
+            ## Set the map options
+            var map_options = {
+                center: new google.maps.LatLng(${center}),
+                zoom: ${zoom},
+                mapTypeId: google.maps.MapTypeId.${type},
+                streetViewControl: false,
+                scrollwheel: false,
+                draggable: true
+            };
+            
+            ## Initialize the map object
+            var google_map = new google.maps.Map(document.getElementById("${id}"), map_options);
+            
+            ## Initialize the InfoWindow
+            var info_window = new google.maps.InfoWindow({
+                content: 'loading'
+            });
+            
+            #set ( $i = 1 )
+            #foreach ( $marker in $markers )
+                ## The <title> of the marker
+                #set ( $title = $marker.getChild("title") )
+                #set ( $title = $_SerializerTool.serialize($title, true) )
+                #set ( $title = $title.replaceAll("'","&#92;&#39;") )
+                
+                ## The <coords> of the marker
+                #set ( $coords = $_SerializerTool.serialize($marker.getChild("coords"), true) )
+                
+                ## Content for the <info> window
+                #set ( $info = $marker.getChild("info") )
+                #set ( $info = $_SerializerTool.serialize($info, true) )
+                #set ( $info = $info.replaceAll("&lt;","<") )
+                #set ( $info = $info.replaceAll("&gt;",">") )
+                #set ( $info = $info.replaceAll("'","&#92;&#39;") )
+                
+                var m${i} = new google.maps.Marker({
+                    map:       google_map,
+                    animation: google.maps.Animation.DROP,
+                    title:     '${title}',
+                    position:  new google.maps.LatLng($coords),
+                    html:      '${info}'
+                });
+                
+                google.maps.event.addListener(m${i}, 'click', function() {
+                    info_window.setContent(this.html);
+                    info_window.open(google_map, this);
+                });
+                
+                ## Increment the $i counter
+                #set ( $i = $i + 1 )
+            #end
+            
+        }
+    </script>
+    <div id="${id}" style="width:${width}px;height:${height}px;">${map_title}</div>
+#end

@@ -1,0 +1,56 @@
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <xsl:variable name="markers"/>
+    <xsl:template match="/system-data-structure">
+        <div id="{id}">
+            <img alt="{title}" title="{title}">
+                <xsl:attribute name="src">
+                    <xsl:value-of select="protocol"/>
+                    <xsl:text>://</xsl:text>
+                    <xsl:text>maps.google.com/maps/api/staticmap?</xsl:text>
+                    <xsl:if test="center!=''">
+                        <xsl:text>center=</xsl:text>
+                        <xsl:value-of select="center"/>
+                        <xsl:text>&amp;</xsl:text>
+                    </xsl:if>
+                    <xsl:text>zoom=</xsl:text>
+                    <xsl:value-of select="zoom"/>
+                    <xsl:text>&amp;size=</xsl:text>
+                    <xsl:value-of select="width"/>
+                    <xsl:text>x</xsl:text>
+                    <xsl:value-of select="height"/>
+                    <xsl:text>&amp;format=</xsl:text>
+                    <xsl:value-of select="format"/>
+                    <xsl:text>&amp;maptype=</xsl:text>
+                    <xsl:value-of select="type"/>
+                    <xsl:text>&amp;language=</xsl:text>
+                    <xsl:value-of select="language"/>
+                    <xsl:apply-templates select="marker[use='Yes'][address!='' or coords!='']"/>
+                    <xsl:text>&amp;sensor=false</xsl:text>
+                </xsl:attribute>
+            </img>
+        </div>
+    </xsl:template>
+    
+    <xsl:template match="marker">
+        <xsl:text>&amp;markers=</xsl:text>
+        <xsl:text>size:</xsl:text>
+        <xsl:value-of select="size"/>
+        <xsl:text>|color:</xsl:text>
+        <xsl:value-of select="color"/>
+        <xsl:text>|label:</xsl:text>
+        <xsl:value-of select="label"/>
+        <xsl:text>|label:</xsl:text>
+        <xsl:value-of select="label"/>
+        <xsl:text>|</xsl:text>
+        <xsl:choose>
+            <xsl:when test="address!=''">
+                <xsl:value-of select="address"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="coords"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+</xsl:stylesheet>

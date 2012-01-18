@@ -1,0 +1,42 @@
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:template match="system-index-block">
+		<div id="jqb_object">
+			<div class="jqb_slides">
+				<xsl:apply-templates select="calling-page/system-page/system-data-structure"/>
+			</div>
+			<div class="jqb_bar">
+				<div class="jqb_info"></div>
+				<div class="jqb_btn jqb_btn_next" id="btn_next"></div>
+				<div class="jqb_btn jqb_btn_pause" id="btn_pauseplay">
+				</div>
+				<div class="jqb_btn jqb_btn_prev" id="btn_prev"></div>
+			</div>
+		</div>
+	</xsl:template>
+	<xsl:template match="system-data-structure">
+		<xsl:for-each select="slide">
+			<div class="jqb_slide" title="{title}">
+				<xsl:choose>
+					<xsl:when test="image/path != '/'">
+						<a>
+							<xsl:attribute name="href">
+								<xsl:choose>
+									<xsl:when test="internal/path != '/'">
+										<xsl:value-of select="internal/path"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="external"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:attribute>
+							<img alt="{image/name}" src="{image/link}"/>
+						</a>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="text"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</div>
+		</xsl:for-each>
+	</xsl:template>
+</xsl:stylesheet>

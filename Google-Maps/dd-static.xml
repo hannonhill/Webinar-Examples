@@ -1,0 +1,133 @@
+<system-data-structure>
+	<text identifier="id" label="HTML id" required="true" regular-expression="/^[a-zA-Z0-9_-]+$/" input-data-format="Twenty (or fewer) alphanumeric characters with hypens and underscores only." maxlength="20" help-text="Ten (or fewer) alphanumeric characters with hypens and underscores only."/>
+	<text identifier="title" label="Map title" required="true" maxlength="100"/>
+	<text identifier="width" label="Map width (in pixels)" required="true" regular-expression="/^[0-9]+$/" input-data-format="Use only numbers." maxlength="4" help-text="Do not type 'px' at the end."/>
+	<text identifier="height" label="Map height (in pixels)" required="true" regular-expression="/^[0-9]+$/" input-data-format="Use only numbers." maxlength="4" help-text="Do not type 'px' at the end."/>
+	<text identifier="center" label="Map center" help-text="Comma-separated latitude and longitude pair (e.g. 33.84659,-84.35686) that defines the center of the map, equidistant from all edges. If no center is given, the markers are used to determine the center."/>
+	<text type="dropdown" identifier="zoom" label="Zoom level" default="12" help-text="Zoom levels are between 0 (entire world can be seen) and 20 (individual buildings).">
+		<dropdown-item value="0"/>
+		<dropdown-item value="1"/>
+		<dropdown-item value="2"/>
+		<dropdown-item value="3"/>
+		<dropdown-item value="4"/>
+		<dropdown-item value="5"/>
+		<dropdown-item value="6"/>
+		<dropdown-item value="7"/>
+		<dropdown-item value="8"/>
+		<dropdown-item value="9"/>
+		<dropdown-item value="10"/>
+		<dropdown-item value="11"/>
+		<dropdown-item value="12"/>
+		<dropdown-item value="13"/>
+		<dropdown-item value="14"/>
+		<dropdown-item value="15"/>
+		<dropdown-item value="16"/>
+		<dropdown-item value="17"/>
+		<dropdown-item value="18"/>
+		<dropdown-item value="19"/>
+		<dropdown-item value="20"/>
+	</text>
+	<text type="radiobutton" identifier="protocol" label="Image protocol" default="http">
+		<radio-item value="http"/>
+		<radio-item value="https"/>
+	</text>
+	<text type="dropdown" identifier="format" label="Image format" default="png8">
+		<dropdown-item value="png8"/>
+		<dropdown-item value="png32"/>
+		<dropdown-item value="gif"/>
+		<dropdown-item value="jpg"/>
+		<dropdown-item value="jpg-baseline"/>
+	</text>
+	<text type="dropdown" identifier="type" label="Map type" default="roadmap">
+		<dropdown-item value="hybrid"/>
+		<dropdown-item value="roadmap"/>
+		<dropdown-item value="satellite"/>
+		<dropdown-item value="terrain"/>
+	</text>
+	<text type="dropdown" identifier="language" label="Map language" default="en" help-text="More information about the map languages can be found at http://goo.gl/ELnua">
+		<dropdown-item value="ar"/>
+		<dropdown-item value="eu"/>
+		<dropdown-item value="bg"/>
+		<dropdown-item value="bn"/>
+		<dropdown-item value="ca"/>
+		<dropdown-item value="cs"/>
+		<dropdown-item value="da"/>
+		<dropdown-item value="de"/>
+		<dropdown-item value="el"/>
+		<dropdown-item value="en"/>
+		<dropdown-item value="en-AU"/>
+		<dropdown-item value="en-GB"/>
+		<dropdown-item value="es"/>
+		<dropdown-item value="eu"/>
+		<dropdown-item value="fa"/>
+		<dropdown-item value="fi"/>
+		<dropdown-item value="fil"/>
+		<dropdown-item value="fr"/>
+		<dropdown-item value="gl"/>
+		<dropdown-item value="gu"/>
+		<dropdown-item value="hi"/>
+		<dropdown-item value="hr"/>
+		<dropdown-item value="hu"/>
+		<dropdown-item value="id"/>
+		<dropdown-item value="it"/>
+		<dropdown-item value="iw"/>
+		<dropdown-item value="ja"/>
+		<dropdown-item value="kn"/>
+		<dropdown-item value="ko"/>
+		<dropdown-item value="lt"/>
+		<dropdown-item value="lv"/>
+		<dropdown-item value="ml"/>
+		<dropdown-item value="mr"/>
+		<dropdown-item value="nl"/>
+		<dropdown-item value="nn"/>
+		<dropdown-item value="no"/>
+		<dropdown-item value="or"/>
+		<dropdown-item value="pl"/>
+		<dropdown-item value="pt"/>
+		<dropdown-item value="pt-BR"/>
+		<dropdown-item value="pt-PT"/>
+		<dropdown-item value="rm"/>
+		<dropdown-item value="ro"/>
+		<dropdown-item value="ru"/>
+		<dropdown-item value="sk"/>
+		<dropdown-item value="sl"/>
+		<dropdown-item value="sr"/>
+		<dropdown-item value="sv"/>
+		<dropdown-item value="tl"/>
+		<dropdown-item value="ta"/>
+		<dropdown-item value="te"/>
+		<dropdown-item value="th"/>
+		<dropdown-item value="tr"/>
+		<dropdown-item value="uk"/>
+		<dropdown-item value="vi"/>
+		<dropdown-item value="zh-CN"/>
+		<dropdown-item value="zh-TW"/>
+	</text>
+	<group identifier="marker" label="Marker" multiple="true" maximum-number="10">
+		<text type="radiobutton" identifier="use" label="Use?" default="No" required="true" help-text="Allows you to save Markers inside Cascade but not show them on your map.">
+			<radio-item value="Yes"/>
+			<radio-item value="No"/>
+		</text>
+		<text type="dropdown" identifier="size" label="Size" default="normal">
+			<dropdown-item value="tiny"/>
+			<dropdown-item value="small"/>
+			<dropdown-item value="mid"/>
+			<dropdown-item value="normal"/>
+		</text>
+		<text type="dropdown" identifier="color" label="Color">
+			<dropdown-item value="black"/>
+			<dropdown-item value="blue"/>
+			<dropdown-item value="brown"/>
+			<dropdown-item value="gray"/>
+			<dropdown-item value="green"/>
+			<dropdown-item value="orange"/>
+			<dropdown-item value="purple"/>
+			<dropdown-item value="red"/>
+			<dropdown-item value="white"/>
+			<dropdown-item value="yellow"/>
+		</text>
+		<text identifier="label" label="Label" required="true" regular-expression="/^[A-Z0-9]$/" input-data-format="A single, uppercase alphanumeric character." maxlength="1" help-text="A single, uppercase alphanumeric character (A-Z and 0-9) that is placed inside the marker.."/>
+		<text identifier="address" label="Address" maxlength="100" help-text="A string address (e.g. 950 E Paces Ferry Rd, Atlanta, GA or 30326). This field will be used in favor of the coordinates."/>
+		<text identifier="coords" label="or, Coordinates" maxlength="50" help-text="Comma-separated latitude and longitude pair (e.g. 33.84659,-84.35686) that defines the location of the mark. This will be used when the address is left blank."/>
+	</group>
+</system-data-structure>

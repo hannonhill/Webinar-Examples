@@ -1,0 +1,46 @@
+## THIS SCRIPT IS MADE FOR CASCADE SERVER 6.10 OR GREATER
+## If you are using a version of prior to 6.10,
+## replace $_EscapeTool.xml($text.value)
+## with $_SerializerTool.serialize($text, true)
+
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+#set ( $data = $page.getChild("system-data-structure") )
+
+#set ( $slides = $_XPathTool.selectNodes($data, "slide") )
+
+<div id="jqb_object">
+    <div class="jqb_slides">
+        #foreach ( $slide in $slides )
+            #set ( $title = $_SerializerTool.serialize($slide.getChild("title"), true) )
+            <div title="${title}" class="jqb_slide">
+                #set ( $image    = $slide.getChild("image") )
+                #set ( $internal = $slide.getChild("internal") )
+                #set ( $external = $slide.getChild("external") )
+                #set ( $text     = $slide.getChild("text") )
+                
+                #if ( $image.getChild("path").value != "/" )
+                    #if ( $internal.getChild("path").value != "/" )
+                        #set ( $href = $internal.getChild("path").value )
+                    #else
+                        #set ( $href = $_SerializerTool.serialize($external, true) )
+                    #end
+                    
+                    #set ( $src  = $image.getChild("link").value )
+                    #set ( $name = $image.getChild("name").value )
+                    
+                    <a href="${href}">
+                        <img src="${src}" alt="${name}" />
+                    </a>
+                #else
+                    $_EscapeTool.xml($text.value)
+                #end
+            </div>
+        #end
+    </div>
+    <div class="jqb_bar">
+        <div class="jqb_info"></div>
+        <div id="btn_next" class="jqb_btn jqb_btn_next"></div>
+        <div id="btn_pauseplay" class="jqb_btn jqb_btn_pause"></div>
+        <div id="btn_prev" class="jqb_btn jqb_btn_prev"></div>
+    </div>
+</div>

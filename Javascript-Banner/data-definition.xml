@@ -1,0 +1,9 @@
+<system-data-structure>
+	<group identifier="slide" label="Slide" multiple="true" maximum-number="10">
+		<text identifier="title" label="Title"/>
+		<asset type="file" identifier="image" label="Image"/>
+		<asset type="page" identifier="internal" label="Internal link"/>
+		<text identifier="external" label="External link" default="http://"/>
+		<text multi-line="true" identifier="text" label="Text"/>
+	</group>
+</system-data-structure>

@@ -1,0 +1,45 @@
+<system-data-structure>
+	<text identifier="id" label="HTML id" required="true" regular-expression="/^[a-zA-Z0-9_-]+$/" input-data-format="Twenty (or fewer) alphanumeric characters with hypens and underscores only." maxlength="20" help-text="Twenty (or fewer) alphanumeric characters with hypens and underscores only."/>
+	<text identifier="title" label="Map title" required="true"/>
+	<text identifier="width" label="Map width (in pixels)" required="true" regular-expression="/^[0-9]+$/" input-data-format="Use only numbers." maxlength="4" help-text="Do not type 'px' at the end."/>
+	<text identifier="height" label="Map height (in pixels)" required="true" regular-expression="/^[0-9]+$/" input-data-format="Use only numbers." maxlength="4" help-text="Do not type 'px' at the end."/>
+	<text identifier="center" label="Map center" required="true" help-text="Comma-separated latitude and longitude pair (e.g. 33.84659,-84.35686) that defines the center of the map, equidistant from all edges."/>
+	<text type="dropdown" identifier="zoom" label="Zoom level" default="12" help-text="Zoom levels are between 0 (entire world can be seen) and 20 (individual buildings).">
+		<dropdown-item value="0"/>
+		<dropdown-item value="1"/>
+		<dropdown-item value="2"/>
+		<dropdown-item value="3"/>
+		<dropdown-item value="4"/>
+		<dropdown-item value="5"/>
+		<dropdown-item value="6"/>
+		<dropdown-item value="7"/>
+		<dropdown-item value="8"/>
+		<dropdown-item value="9"/>
+		<dropdown-item value="10"/>
+		<dropdown-item value="11"/>
+		<dropdown-item value="12"/>
+		<dropdown-item value="13"/>
+		<dropdown-item value="14"/>
+		<dropdown-item value="15"/>
+		<dropdown-item value="16"/>
+		<dropdown-item value="17"/>
+		<dropdown-item value="18"/>
+		<dropdown-item value="19"/>
+		<dropdown-item value="20"/>
+	</text>
+	<text type="dropdown" identifier="type" label="Map type" default="ROADMAP">
+		<dropdown-item value="HYBRID"/>
+		<dropdown-item value="ROADMAP"/>
+		<dropdown-item value="SATELLITE"/>
+		<dropdown-item value="TERRAIN"/>
+	</text>
+	<group identifier="marker" label="Marker" multiple="true" maximum-number="10">
+		<text type="radiobutton" identifier="use" label="Use?" default="No" required="true" help-text="Allows you to save Markers inside Cascade but not show them on your map.">
+			<radio-item value="Yes"/>
+			<radio-item value="No"/>
+		</text>
+		<text identifier="title" label="Marker title" required="true"/>
+		<text identifier="coords" label="Coordinates" required="true" help-text="Comma-separated latitude and longitude pair (e.g. 33.84659,-84.35686) that defines the location of the mark."/>
+		<text identifier="info" label="InfoWindow content" required="true"/>
+	</group>
+</system-data-structure>
