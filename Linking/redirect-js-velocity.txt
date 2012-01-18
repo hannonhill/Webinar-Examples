@@ -1,0 +1,12 @@
+#set( $link = $_XPathTool.selectSingleNode($contentRoot, "//link").value)
+
+<script type="text/javascript"> 
+//<![CDATA[
+    var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));  
+    if (mobile) {  
+        var link = "[system-asset:configuration=Mobile]$link[/system-asset:configuration]";
+        link = link.replace(/amp;/g,"");
+        document.location = link;  
+    }  
+//]]>
+</script>
