@@ -1,0 +1,45 @@
+<h1> General Configuration Data </h1>
+<div class="general-info">
+
+#set ($dataStructures = $_XPathTool.selectNodes($contentRoot,"//system-data-structure"))
+#foreach($dataStructure in $dataStructures)
+    #set ($playgroundWidth = $dataStructure.getChild("playground-width").value)
+    #set ($playgroundHeight = $dataStructure.getChild("playground-height").value)
+    #set ($backgroundColor = $dataStructure.getChild("background-color").value)
+    #set ($refreshRate = $dataStructure.getChild("refresh-rate").value)
+    
+    #set ($systemViewOpen = "[system-asset]" )
+    #set ($systemViewClose = "[/system-asset]" )
+    
+    Playground Width:<span class="playground-width">
+        $playgroundWidth
+    </span><br/>
+    Playground Height:<span class="playground-height">
+        $playgroundHeight
+    </span><br/>
+    Background Color:<span class="background-color">
+        $backgroundColor
+    </span><br/>
+    Refresh Rate:<span class="refresh-rate">
+        $refreshRate
+    </span><br/>
+    
+    #set ($bgLayers = $_XPathTool.selectNodes($dataStructure, "//background-layer"))
+    
+    #foreach($bgLayer in $bgLayers)
+        <div class="background-layer" >
+            #set($bgSpeed = $bgLayer.getChild("layer-speed").value)
+            #set($bgURL1 = $bgLayer.getChild("background-image-1").getChild("path").value)
+            #set($bgURL2 = $bgLayer.getChild("background-image-2").getChild("path").value)
+            
+            Layer Speed:<span class="layer-speed">
+                $bgSpeed
+            </span><br/>
+            Sprite 1:<img class="background-image-1" src="$bgURL1" style="background: $backgroundColor;"/><br/>
+            Sprite 2:<img class="background-image-2" src="$bgURL2" style="background: $backgroundColor;"/><br/>
+        </div>
+    #end
+#end
+
+</div>
+

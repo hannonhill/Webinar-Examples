@@ -1,0 +1,65 @@
+<system-data-structure>
+  <text identifier="missile-speed" label="Missile Speed" default="10" required="true" help-text="Speed of the enemy missiles (in pixels)."/>
+  <text identifier="spawn-rate" label="Spawn Rate" default="1000" required="true" help-text="How often new enemies are spawned (in ms)."/>
+  <group identifier="missile-animation" label="Missile Animation">
+    <asset type="file" identifier="missile-sprite" label="Missile Sprite" required="true"/>
+    <text type="dropdown" identifier="type" label="Type" required="true" help-text="What type of animation contained in the spirte sheet.">
+      <dropdown-item value="static"/>
+      <dropdown-item value="vertical"/>
+      <dropdown-item value="horizontal"/>
+    </text>
+    <text identifier="width" label="Image Width" required="true" help-text="The total width of the image file."/>
+    <text identifier="height" label="Image Height" required="true" help-text="The total height of the image file."/>
+    <text identifier="num-frames" label="Number of Frames" help-text="How many frames are contained in this sprite sheet (null = 1)"/>
+    <text identifier="rate" label="Rate" help-text="How long between each frame (in MS)."/>
+  </group>
+  <group identifier="missile-explode-animation" label="Missile Explode Animation">
+    <asset type="file" identifier="missile-explode-sprite" label="Missile Explode Sprite" required="true"/>
+    <text type="dropdown" identifier="type" label="Type" required="true" help-text="What type of animation contained in the spirte sheet.">
+      <dropdown-item value="static"/>
+      <dropdown-item value="vertical"/>
+      <dropdown-item value="horizontal"/>
+    </text>
+    <text identifier="width" label="Image Width" required="true" help-text="The total width of the image file."/>
+    <text identifier="height" label="Image Height" required="true" help-text="The total height of the image file."/>
+    <text identifier="num-frames" label="Number of Frames" help-text="How many frames are contained in this sprite sheet (null = 1)"/>
+    <text identifier="rate" label="Rate" help-text="How long between each frame (in MS)."/>
+  </group>
+  <group identifier="enemy" label="Enemy" multiple="true" minimum-number="1">
+    <text identifier="shields" label="Shields" default="1" required="true" help-text="How many shields the enemy has."/>
+    <text identifier="vert-speed" label="Vertical Speed" default="2" help-text="Vertical Speed of the enemy ship (in pixels) -- if the ship has AI which allows it to move vertically."/>
+    <text identifier="horz-speed" label="Horizontal Speed" default="3" help-text="Horizontal Speed of the enemy ship (in pixels) if it moves horizontally."/>
+    <text identifier="point-value" label="Point Value" required="true" help-text="How much this enemy is worth in points."/>
+    <text identifier="prob" label="Spawn Probability" required="true" help-text="The probability of the enemy spawning during a spawn point."/>
+    <text type="dropdown" identifier="type" label="Enemy AI Type" default="minion" required="true">
+      <dropdown-item value="minion"/>
+      <dropdown-item value="brainy"/>
+      <dropdown-item value="boss"/>
+    </text>
+    <group identifier="idle-animation" label="Idle Animation">
+      <asset type="file" identifier="idle-sprite" label="Idle Sprite" required="true"/>
+      <text type="dropdown" identifier="type" label="Type" required="true" help-text="What type of animation contained in the spirte sheet.">
+        <dropdown-item value="static"/>
+        <dropdown-item value="vertical"/>
+        <dropdown-item value="horizontal"/>
+      </text>
+    <text identifier="width" label="Image Width" required="true" help-text="The total width of the image file."/>
+    <text identifier="height" label="Image Height" required="true" help-text="The total height of the image file."/>
+      <text identifier="num-frames" label="Number of Frames" help-text="How many frames are contained in this sprite sheet (null = 1)"/>
+      <text identifier="rate" label="Rate" help-text="How long between each frame (in MS)."/>
+    </group>
+    <group identifier="explode-animation" label="Explode Animation">
+      <asset type="file" identifier="explode-sprite" label="Explode Sprite" required="true"/>
+      <text type="dropdown" identifier="type" label="Type" required="true" help-text="What type of animation contained in the spirte sheet.">
+        <dropdown-item value="static"/>
+        <dropdown-item value="vertical"/>
+        <dropdown-item value="horizontal"/>
+      </text>
+    <text identifier="width" label="Image Width" required="true" help-text="The total width of the image file."/>
+    <text identifier="height" label="Image Height" required="true" help-text="The total height of the image file."/>
+      <text identifier="num-frames" label="Number of Frames" help-text="How many frames are contained in this sprite sheet (null = 1)"/>
+      <text identifier="rate" label="Rate" help-text="How long between each frame (in MS)."/>
+    </group>
+  </group>
+</system-data-structure>
+

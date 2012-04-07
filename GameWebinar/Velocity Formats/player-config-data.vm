@@ -1,0 +1,103 @@
+<h1> Player Configuration Data </h1>
+<div class="player-info">
+
+#set ($dataStructures = $_XPathTool.selectNodes($contentRoot,"//system-data-structure"))
+#foreach($dataStructure in $dataStructures)
+    #set ($gracePeriod = $dataStructure.getChild("grace-period").value)
+    #set ($lives = $dataStructure.getChild("lives").value)
+    #set ($shields = $dataStructure.getChild("shields").value)
+    #set ($vertSpeed = $dataStructure.getChild("vert-speed").value)
+    #set ($horzSpeed = $dataStructure.getChild("horz-speed").value)
+    
+    Grace Period:<span class="grace-period">
+        $gracePeriod
+    </span><br/>
+    Lives:<span class="lives">
+        $lives
+    </span><br/>
+   Shields:<span class="shields">
+        $shields
+    </span><br/>
+    Player Horizontal Speed:<span class="horz-speed">
+        $horzSpeed
+    </span><br/>
+    Player Vertical Speed:<span class="vert-speed">
+        $vertSpeed
+    </span><br/>
+    
+    #set ($idleAnimation = $dataStructure.getChild("idle-animation"))
+    #set ($idleSprite = $idleAnimation.getChild("idle-sprite").getChild("link").value)
+    #set ($type = $idleAnimation.getChild("type").value)
+    #set ($numFrames = $idleAnimation.getChild("num-frames").value)
+    #set ($rate = $idleAnimation.getChild("rate").value)
+    #set ($width = $idleAnimation.getChild("width").value)
+    #set ($height = $idleAnimation.getChild("height").value)
+    
+    <div class="idle-animation" >
+        <h3> Idle Animation </h3>
+        Type: <span class="type">$type</span><br/>
+        Number of Frames: <span class="num-frames">$numFrames</span><br/>
+        Rate: <span class="rate">$rate</span><br/>
+        Width: <span class="width">$width</span><br/>
+        Height: <span class="height">$height</span><br/>
+        Idle Sprite: <img src="$idleSprite" class="sprite" />
+    </div>
+    
+    #set ($explodeAnimation = $dataStructure.getChild("explode-animation"))
+    #set ($explodeSprite = $explodeAnimation.getChild("explode-sprite").getChild("link").value)
+    #set ($type = $explodeAnimation.getChild("type").value)
+    #set ($numFrames = $explodeAnimation.getChild("num-frames").value)
+    #set ($rate = $explodeAnimation.getChild("rate").value)
+    #set ($width = $explodeAnimation.getChild("width").value)
+    #set ($height = $explodeAnimation.getChild("height").value)
+    
+    <div class="explode-animation" >
+        <h3> Explode Animation </h3>
+        Type: <span class="type">$type</span><br/>
+        Number of Frames: <span class="num-frames">$numFrames</span><br/>
+        Rate: <span class="rate">$rate</span><br/>
+        Width: <span class="width">$width</span><br/>
+        Height: <span class="height">$height</span><br/>
+        Explode Sprite: <img src="$explodeSprite" class="sprite" />
+    </div>
+    
+    #set ($playerMissile = $dataStructure.getChild("player-missile"))
+    #set ($missileSprite = $playerMissile.getChild("missile-sprite").getChild("link").value)
+    #set ($type = $playerMissile.getChild("type").value)
+    #set ($numFrames = $playerMissile.getChild("num-frames").value)
+    #set ($rate = $playerMissile.getChild("rate").value)
+    #set ($missileSpeed = $playerMissile.getChild("missile-speed").value)
+    #set ($width = $playerMissile.getChild("width").value)
+    #set ($height = $playerMissile.getChild("height").value)
+    
+    <div class="player-missile" >
+        <h3> Player Missile </h3>
+        Type: <span class="type">$type</span><br/>
+        Number of Frames: <span class="num-frames">$numFrames</span><br/>
+        Rate: <span class="rate">$rate</span><br/>
+        Width: <span class="width">$width</span><br/>
+        Height: <span class="height">$height</span><br/>
+        Missile Speed: <span class="missile-speed">$missileSpeed</span><br/>
+        Missile Sprite: <img src="$missileSprite" class="sprite" />
+    </div>
+    
+    #set ($explodeAnimation = $dataStructure.getChild("player-missile-explode"))
+    #set ($explodeSprite = $explodeAnimation.getChild("missile-sprite-explode").getChild("link").value)
+    #set ($type = $explodeAnimation.getChild("type").value)
+    #set ($numFrames = $explodeAnimation.getChild("num-frames").value)
+    #set ($rate = $explodeAnimation.getChild("rate").value)
+    #set ($width = $explodeAnimation.getChild("width").value)
+    #set ($height = $explodeAnimation.getChild("height").value)
+    
+    <div class="player-missile-explode" >
+        <h3> Player Missile Explode Animation </h3>
+        Type: <span class="type">$type</span><br/>
+        Number of Frames: <span class="num-frames">$numFrames</span><br/>
+        Rate: <span class="rate">$rate</span><br/>
+        Width: <span class="width">$width</span><br/>
+        Height: <span class="height">$height</span><br/>
+        Explode Sprite: <img src="$explodeSprite" class="sprite" />
+    </div>
+#end
+</div>
+

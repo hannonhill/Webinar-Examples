@@ -1,0 +1,14 @@
+<system-data-structure>
+  <text identifier="playground-width" label="Playground Width" default="700" required="true"/>
+  <text identifier="playground-height" label="Playground Height" default="250" required="true"/>
+  <text identifier="background-color" label="Background Color" required="true"/>
+  <text identifier="refresh-rate" label="Referesh Rate" default="15" required="true" help-text="The refresh rate of the game (how many times the animation / sprite positions are update)"/>
+  <asset type="file" identifier="game-logo" label="Start Screen" required="true"/>
+  <text identifier="start-text-color" label="Start Text Color" required="true"/>
+  <group identifier="background-layer" label="Background Layer" multiple="true" minimum-number="1">
+    <text identifier="layer-speed" label="Layer Speed" required="true" help-text="The speed at which this layer moves from left to right."/>
+    <asset type="file" identifier="background-image-1" label="Background Image 1" required="true"/>
+    <asset type="file" identifier="background-image-2" label="Background Image 2" required="true"/>
+  </group>
+</system-data-structure>
+

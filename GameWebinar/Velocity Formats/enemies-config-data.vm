@@ -1,0 +1,122 @@
+<h1> Enemies Configuration Data </h1>
+<div class="enemies-info">
+
+#set ($dataStructure = $_XPathTool.selectSingleNode($contentRoot,"//system-data-structure"))
+    #set ($missileSpeed = $dataStructure.getChild("missile-speed").value)
+    #set ($spawnRate = $dataStructure.getChild("spawn-rate").value)
+    
+    Missile Speed: <span class="missile-speed">
+        $missileSpeed
+    </span><br/>
+    
+    Spawn Rate: <span class="spawn-rate">
+        $spawnRate
+    </span><br/>
+    
+    #set ($missileAnimation = $dataStructure.getChild("missile-animation"))
+    #set ($missileSprite = $missileAnimation.getChild("missile-sprite").getChild("link").value)
+    #set ($type = $missileAnimation.getChild("type").value)
+    #set ($numFrames = $missileAnimation.getChild("num-frames").value)
+    #set ($rate = $missileAnimation.getChild("rate").value)
+    #set ($width = $missileAnimation.getChild("width").value)
+    #set ($height = $missileAnimation.getChild("height").value)
+    
+    <div class="missile-animation" >
+        <h3> Missile Animation </h3>
+        Type: <span class="type">$type</span><br/>
+        Number of Frames: <span class="num-frames">$numFrames</span><br/>
+        Rate: <span class="rate">$rate</span><br/>
+        Width: <span class="width">$width</span><br/>
+        Height: <span class="height">$height</span><br/>
+        Idle Sprite: <img src="$missileSprite" class="sprite" />
+    </div>
+    
+    #set ($missileExplodeAnimation = $dataStructure.getChild("missile-explode-animation"))
+    #set ($missileExplodeSprite = $missileExplodeAnimation.getChild("missile-explode-sprite").getChild("link").value)
+    #set ($type = $missileExplodeAnimation.getChild("type").value)
+    #set ($numFrames = $missileExplodeAnimation.getChild("num-frames").value)
+    #set ($rate = $missileExplodeAnimation.getChild("rate").value)
+    #set ($width = $missileExplodeAnimation.getChild("width").value)
+    #set ($height = $missileExplodeAnimation.getChild("height").value)
+    
+    <div class="missile-explode-animation" >
+        <h3> Missile Explode Animation </h3>
+        Type: <span class="type">$type</span><br/>
+        Number of Frames: <span class="num-frames">$numFrames</span><br/>
+        Rate: <span class="rate">$rate</span><br/>
+        Width: <span class="width">$width</span><br/>
+        Height: <span class="height">$height</span><br/>
+        Idle Sprite: <img src="$missileExplodeSprite" class="sprite" />
+    </div>
+    
+    #set($enemies = $_XPathTool.selectNodes($contentRoot,"//enemy"))
+    
+    <h1> Enemies: </h1>
+    #foreach($enemy in $enemies)
+        #set ($shields = $enemy.getChild("shields").value)
+        #set ($vertSpeed = $enemy.getChild("vert-speed").value)
+        #set ($horzSpeed = $enemy.getChild("horz-speed").value)
+        #set ($pointValue = $enemy.getChild("point-value").value)
+        #set ($prob = $enemy.getChild("prob").value)
+        #set ($type = $enemy.getChild("type").value)
+    
+      <div class="enemy">
+      <h2> Enemy </h2>
+       Shields:<span class="shields">
+            $shields
+        </span><br/>
+        Enemy Horizontal Speed:<span class="horz-speed">
+            $horzSpeed
+        </span><br/>
+        Enemy Vertical Speed:<span class="vert-speed">
+            $vertSpeed
+        </span><br/>
+        Point Value: <span class="point-value">
+            $pointValue
+        </span><br/>
+        Spawn Probability: <span class="prob">
+            $prob</span>%<br/>
+        AI Type: <span class="ai-type" >
+            $type
+        </span><br/>
+    
+        #set ($idleAnimation = $enemy.getChild("idle-animation"))
+        #set ($idleSprite = $idleAnimation.getChild("idle-sprite").getChild("link").value)
+        #set ($type = $idleAnimation.getChild("type").value)
+        #set ($numFrames = $idleAnimation.getChild("num-frames").value)
+        #set ($width = $idleAnimation.getChild("width").value)
+        #set ($height = $idleAnimation.getChild("height").value)
+        #set ($rate = $idleAnimation.getChild("rate").value)
+        
+        <div class="idle-animation" >
+            <h3> Idle Animation </h3>
+            Type: <span class="type">$type</span><br/>
+            Number of Frames: <span class="num-frames">$numFrames</span><br/>
+            Rate: <span class="rate">$rate</span><br/>
+            Width: <span class="width">$width</span><br/>
+            Height: <span class="height">$height</span><br/>
+            Idle Sprite: <img src="$idleSprite" class="sprite" />
+        </div>
+    
+        #set ($explodeAnimation = $enemy.getChild("explode-animation"))
+        #set ($explodeSprite = $explodeAnimation.getChild("explode-sprite").getChild("link").value)
+        #set ($type = $explodeAnimation.getChild("type").value)
+        #set ($numFrames = $explodeAnimation.getChild("num-frames").value)
+        #set ($rate = $explodeAnimation.getChild("rate").value)
+        #set ($width = $explodeAnimation.getChild("width").value)
+        #set ($height = $explodeAnimation.getChild("height").value)
+        
+        <div class="explode-animation" >
+            <h3> Explode Animation </h3>
+            Type: <span class="type">$type</span><br/>
+            Number of Frames: <span class="num-frames">$numFrames</span><br/>
+            Rate: <span class="rate">$rate</span><br/>
+            Width: <span class="width">$width</span><br/>
+            Height: <span class="height">$height</span><br/>
+            Explode Sprite: <img src="$explodeSprite" class="sprite" />
+        </div>
+        
+        </div>
+#end
+</div>
+
