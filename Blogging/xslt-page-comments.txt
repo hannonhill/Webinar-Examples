@@ -15,7 +15,7 @@
             </h2>
             <div class="entry">
                 <p>
-                    <form action="/path/to/comment/handler.php" method="post">
+                    <form action="/path/to/comment-handler.php" method="post">
                         <input type="hidden" name="PageID">
                             <xsl:attribute name="value">
                                 <xsl:value-of select="$pageID"/>

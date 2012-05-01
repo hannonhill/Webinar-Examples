@@ -14,7 +14,7 @@ $_SortTool.sort($comments)
     <h2 class="title">Comments</h2>
     <div class="entry">
         <p>
-            <form action="/path/to/comment/handler.php" method="post">
+            <form action="/path/to/comment-handler.php" method="post">
                 <input type="hidden" value="${pageID}" name="PageID"/>
                 <input type="hidden" value="${blockID}" name="BlockID"/>
                 <!--#START-CODE<input type="hidden" value="<?php echo 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']; ?>" name="Redirect"/>#END-CODE-->
