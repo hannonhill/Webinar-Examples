@@ -1,0 +1,27 @@
+<h1><system-page-title/></h1>
+
+## Reference to the 'system-page' node
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+
+## Reference to the 'system-data-structure' node
+#set ( $data = $page.getChild("system-data-structure") )
+
+
+#set ( $heading = $data.getChild("heading") )
+#set ( $alert = $data.getChild("alert") )
+#set ( $search = $data.getChild("search") )
+
+
+#if ( $heading.value != "" )
+    <p>$_EscapeTool.xml($heading.value)</p>
+#end
+
+#if ( $alert.value != "" )
+    <script type="text/javascript">
+        alert('${_EscapeTool.javascript($alert.value)}');
+    </script>
+#end
+
+#if ( $search.value != "" )
+    <p><a href="https://www.google.com/#q=${_EscapeTool.url($search.value)}">Search Google</a></p>
+#end

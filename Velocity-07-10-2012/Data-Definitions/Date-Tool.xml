@@ -1,0 +1,4 @@
+<system-data-structure>
+	<text type="datetime" identifier="beginning" label="Beginning"/>
+	<text type="datetime" identifier="end" label="End"/>
+</system-data-structure>

@@ -1,0 +1,32 @@
+<h1><system-page-title/></h1>
+
+## Reference to the 'system-page' node
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+
+## Reference to the 'system-data-structure' node
+#set ( $data = $page.getChild("system-data-structure") )
+
+
+#set ( $beg = $data.getChild("beginning") )
+#set ( $end = $data.getChild("end") )
+
+
+#if ( $beg.value != "" )
+    #set ( $object1 = $_DateTool.getDate($beg.value) )
+    #set ( $beginning = $_DateTool.format("MEDIUM", $object1) )
+    
+    <p>Beginning: ${beginning}</p>
+#end
+
+#if ( $end.value != ""  )
+    #set ( $object2 = $_DateTool.getDate($end.value) )
+    #set ( $ending = $_DateTool.format("EEEE, MMMM dd, yyyy G hh:mm:ss a Z", $object2) )
+
+    <p>End: ${ending}</p>
+#end
+
+#if ( $beg.value != ""  && $end.value != ""  )
+    #set ( $diff = $_DateTool.difference($object1, $object2) )
+    
+    <p>Difference: ${diff}</p>
+#end

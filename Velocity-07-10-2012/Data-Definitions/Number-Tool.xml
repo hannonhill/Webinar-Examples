@@ -1,0 +1,4 @@
+<system-data-structure>
+	<text identifier="percent" label="Percent"/>
+	<text identifier="currency" label="Currency"/>
+</system-data-structure>

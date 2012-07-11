@@ -1,0 +1,23 @@
+<h1><system-page-title/></h1>
+
+## Reference to the 'system-page' node
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+
+## Reference to the 'system-data-structure' node
+#set ( $data = $page.getChild("system-data-structure") )
+
+
+#set ( $method = $data.getChild("sort").value )
+#set ( $items = $_XPathTool.selectNodes($data, "item[.!='']") )
+
+#if ( $items.size() > 0 )
+    $_SortTool.addSortCriterion(".", "en", "text", "${method}", "upper-first")
+    $_SortTool.sort($items)
+    
+    <p>Sorted in ${method} order:</p>
+    <ul>
+    #foreach ( $item in $items )
+        <li>$_EscapeTool.xml($item.value)</li>
+    #end
+    </ul>
+#end

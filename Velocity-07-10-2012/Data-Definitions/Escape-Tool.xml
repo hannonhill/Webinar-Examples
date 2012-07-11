@@ -1,0 +1,5 @@
+<system-data-structure>
+	<text identifier="heading" label="Heading"/>
+	<text identifier="alert" label="Alert Text"/>
+	<text identifier="search" label="Search Query"/>
+</system-data-structure>

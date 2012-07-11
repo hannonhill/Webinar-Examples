@@ -1,0 +1,7 @@
+<system-data-structure>
+	<text type="dropdown" identifier="sort" label="Sort Method" default="ascending">
+		<dropdown-item value="descending"/>
+		<dropdown-item value="ascending"/>
+	</text>
+	<text identifier="item" label="Item" multiple="true" maximum-number="10" minimum-number="1"/>
+</system-data-structure>

@@ -1,0 +1,7 @@
+<system-data-structure>
+	<text identifier="integer" label="Integer"/>
+	<text identifier="double" label="Double"/>
+	<group identifier="list" label="List">
+		<text identifier="number" label="Number" multiple="true" maximum-number="5" minimum-number="1"/>
+	</group>
+</system-data-structure>

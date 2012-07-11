@@ -1,0 +1,10 @@
+<system-data-structure>
+	<group identifier="before" label="Before">
+		<text identifier="haystack" label="Haystack"/>
+		<text identifier="needle" label="Needle"/>
+	</group>
+	<group identifier="after" label="After">
+		<text identifier="haystack" label="Haystack"/>
+		<text identifier="needle" label="Needle"/>
+	</group>
+</system-data-structure>

@@ -1,0 +1,34 @@
+<h1><system-page-title/></h1>
+
+## Reference to the 'system-page' node
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+
+## Reference to the 'system-data-structure' node
+#set ( $data = $page.getChild("system-data-structure") )
+
+
+#set ( $items = ['Sales','Support','Engineering','Marketing','Services'] )
+#if ( $items.size() > 0 )
+    <p>There $_DisplayTool.plural($items.size(), "is", "are") ${items.size()} $_DisplayTool.plural($items.size(), "department", "departments") at Hannon Hill.</p>
+    <p>Hannon Hill Departments: $_DisplayTool.list($items, ', ')</p>
+    <p>Hannon Hill Departments: $_DisplayTool.list($items, ', ', ' and ')</p>
+#end
+
+
+#set ( $content = $data.getChild("content") )
+
+#if ( $content.value != "" )
+    <p><strong>Regular</strong></p>
+    $_SerializerTool.serialize($content, true)
+    
+    <p><strong>Strip Tags</strong></p>
+    #set ( $stripped = $_DisplayTool.stripTags($content.value) )
+    <p>${stripped}</p>
+    
+    <p><strong>Truncate and Strip Tags</strong></p>
+    <p>$_DisplayTool.truncate($stripped, 35, "...")</p>
+    <p>$_DisplayTool.truncate($stripped, 35, "...", true)</p>
+#end
+
+#set ( $display = $page.getChild("display-name") )
+<p>$_DisplayTool.alt($_EscapeTool.xml($display.value), "No Display Name")</p>

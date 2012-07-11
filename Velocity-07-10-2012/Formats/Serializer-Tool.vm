@@ -1,0 +1,20 @@
+<h1><system-page-title/></h1>
+
+## Reference to the 'system-page' node
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+
+## Reference to the 'system-data-structure' node
+#set ( $data = $page.getChild("system-data-structure") )
+
+
+#set ( $thefalse = $data.getChild("h3") )
+#set ( $thetrue = $data.getChild("thetrue") )
+
+
+#if ( $thefalse.value != "" )
+    $_SerializerTool.serialize($thefalse, false)
+#end
+
+#if ( $thetrue.value != "" )
+    $_SerializerTool.serialize($thetrue, true)
+#end
