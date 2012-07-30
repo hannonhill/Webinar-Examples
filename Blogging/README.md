@@ -4,5 +4,5 @@ This example contains Formats (in both Velocity and XSLT), example Javascript co
 
 This code is related to a blog post and webinar on this topic.
 
-Blog Post: http://www.hannonhill.com/news/blog/2012/blogging-with-cascade-server.html
+Blog Post: http://www.hannonhill.com/news/blog/2012/blogging-with-cascade-server.html<br/>
 Webinar: http://hannonhill.com/products/demos/setting-up-blogging-in-cascade-webinar-form.html
