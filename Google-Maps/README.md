@@ -11,7 +11,7 @@ Contents:
 
 **SUMMARY**
 
-Velocity scripts and Data Definitions to help facilitate the creation and addition of Google Maps into Cascade Server Pages.
+Formats and Data Definitions to help facilitate the creation and addition of Google Maps into Cascade Server Pages.
 
 ===========================================
 
