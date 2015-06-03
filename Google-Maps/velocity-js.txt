@@ -4,17 +4,17 @@
 #set ( $data = $_XPathTool.selectSingleNode($contentRoot, "/system-data-structure") )
 
 ## HTML <id>
-#set ( $id = $_SerializerTool.serialize($data.getChild("id"), true) )
+#set ( $id = $_EscapeTool.xml($data.getChild("id").value) )
 
 ## Block <title>
-#set ( $map_title = $_SerializerTool.serialize($data.getChild("title"), true) )
+#set ( $map_title = $_EscapeTool.xml($data.getChild("map-title").value) )
 
 ## Map size (<width> and <height>) in pixels
-#set ( $width  = $_SerializerTool.serialize($data.getChild("width"), true) )
-#set ( $height = $_SerializerTool.serialize($data.getChild("height"), true) )
+#set ( $width  = $_EscapeTool.xml($data.getChild("width").value) )
+#set ( $height = $_EscapeTool.xml($data.getChild("height").value) )
 
 ## Map <center>, equidistant from all edges
-#set ( $center = $_SerializerTool.serialize($data.getChild("center"), true) )
+#set ( $center = $_EscapeTool.xml($data.getChild("center").value) )
 
 ## Map <zoom> level to start with
 #set ( $zoom = $data.getChild("zoom").value )
@@ -56,12 +56,11 @@
             #set ( $i = 1 )
             #foreach ( $marker in $markers )
                 ## The <title> of the marker
-                #set ( $title = $marker.getChild("title") )
-                #set ( $title = $_SerializerTool.serialize($title, true) )
+                #set ( $title = $_EscapeTool.xml($marker.getChild("title").value) )
                 #set ( $title = $title.replaceAll("'","&#92;&#39;") )
                 
                 ## The <coords> of the marker
-                #set ( $coords = $_SerializerTool.serialize($marker.getChild("coords"), true) )
+                #set ( $coords = $_EscapeTool.xml($marker.getChild("coords").value) )
                 
                 ## Content for the <info> window
                 #set ( $info = $marker.getChild("info") )
